@@ -1,0 +1,37 @@
+{
+ "name": "uTube",
+ "description": "Show an embedded video on a simple blank page when visiting a YouTube video link.",
+ "version": "1.2",
+ "manifest_version": 2,
+ "background": {"scripts":["background.js"]},
+ "content_scripts": [
+  {
+   "matches": [
+     "https://realityripple.com/Software/XUL/uTube/play.html"
+   ],
+   "js": ["content.js"]
+  },
+  {
+   "matches": [
+     "https://www.youtube-nocookie.com/embed/*"
+   ],
+   "js": ["embed.js"],
+   "all_frames": true
+  }
+ ],
+ "permissions": [
+  "webRequest",
+  "*://www.youtube.com/*",
+  "*://m.youtube.com/*",
+  "webRequestBlocking",
+  "storage"
+ ],
+ "options_ui":
+ {
+  "page": "options.html",
+  "open_in_tab": false
+ },
+ "icons": {
+  "64": "icon.png"
+ }
+}

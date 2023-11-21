@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8" />
+  <style>
+   body
+   {
+    font-family: sans-serif;
+   }
+   .descr
+   {
+    margin-top: 0.5em;
+    padding-left: 1em;
+    font-size: 80%;
+    font-style: italic;
+   }
+   .pnlButtons
+   {
+    padding: 2em 0.75em 1.25em;
+    text-align: left;
+   }
+   .pnlButtons .spacer
+   {
+    display: inline-block;
+    width: calc(100% - 24em);
+   }
+   input[type=text]
+   {
+    font-family: monospace;
+    width: calc(100% - 8em);
+   }
+   button
+   {
+    font-size: 120%;
+    padding: 0.25em 1em;
+   }
+   @media (prefers-color-scheme: dark)
+   {
+    body,input,button
+    {
+     background-color: #313131;
+     color: #bfbfbf;
+    }
+   }
+  </style>
+  <script src="options.js"></script>
+ </head>
+ <body>
+  <div class="app">
+   <input type="checkbox" id="chkAutoplay"><label for="chkAutoplay"> Autoplay Videos</label><br>
+   <div class="descr">If you want videos to play immediately on loading, check this box. If you want to prevent autoplay, uncheck it!</div><br>
+   <input type="checkbox" id="chkHosted"><label for="chkHosted"> Hosted Embed</label><br>
+   <div class="descr">A hosted embed will work in more circumstances than a non-hosted embed.</div><br>
+   <label for="txtHost">Hosted URL: </label><input type="text" id="txtHost"><br>
+   <div class="descr">The URL of the hosted embed.</div>
+  </div>
+  <div class="pnlButtons">
+   <button id="cmdDefaults" type="button">Restore Defaults</button>
+   <span class="spacer"></span>
+   <button id="cmdOK" type="button">OK</button>
+   <button id="cmdCancel" type="button">Cancel</button>
+  </div>
+ </body>
+</html>
