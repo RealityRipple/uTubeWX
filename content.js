@@ -5,6 +5,9 @@ const uTube = function()
   uTube.loadPrefs();
   let aURI = window.location;
   let defU = _hostedURL();
+  let d = 'https://www.youtube-nocookie.com/embed/';
+  if (!uTube.prefs.nocookie)
+   d = 'https://www.youtube.com/embed/';
   if (defU)
   {
    if (aURI.href.slice(0, defU.length) === defU)
@@ -22,7 +25,7 @@ const uTube = function()
   }
   else
   {
-   if (aURI.href.slice(0, 39) === 'https://www.youtube-nocookie.com/embed/')
+   if (aURI.href.slice(0, d.length) === d)
    {
     if (uTube.tErr)
      window.clearInterval(uTube.tErr);
@@ -143,11 +146,12 @@ const uTube = function()
  {
   uTube.tErr = false;
   chrome.storage.local.get(
-   {autoplay: false, hosted: true, hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'},
+   {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'},
    function(items)
    {
     uTube.prefs = {};
     uTube.prefs.autoplay = items.autoplay;
+    uTube.prefs.nocookie = items.nocookie;
     uTube.prefs.hosted = items.hosted;
     uTube.prefs.hostedURL = items.hostedURL;
    }
@@ -160,6 +164,7 @@ const uTube = function()
   loadPrefs: $loadPrefs,
   prefs: {
    autoplay: false,
+   nocookie: true,
    hosted: true,
    hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'
   }

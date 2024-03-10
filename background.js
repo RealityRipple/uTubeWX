@@ -65,6 +65,9 @@ var uTube = {
  {
   let aURI = new URL(sURL);
   let defU = uTube.hostedURL();
+  let d = 'https://www.youtube-nocookie.com/embed/';
+  if (!uTube.prefs.nocookie)
+   d = 'https://www.youtube.com/embed/';
   if (!uTube.hasOwnProperty('tabs'))
    uTube.tabs = {};
   if (!uTube.tabs.hasOwnProperty(tabID))
@@ -129,13 +132,13 @@ var uTube = {
    {
     if (result.hasOwnProperty('list'))
     {
-     u = 'https://www.youtube-nocookie.com/embed/' + result.v + '?list=' + result.list;
+     u = d + result.v + '?list=' + result.list;
      if (a)
       u += '&autoplay=1';
     }
     else
     {
-     u = 'https://www.youtube-nocookie.com/embed/' + result.v;
+     u = d + result.v;
      if (a)
       u += '?autoplay=1';
     }
@@ -148,6 +151,8 @@ var uTube = {
      u = defU + '#' + result.v;
     if (a)
      u += '!';
+    if (!uTube.prefs.nocookie)
+     u += '@';
    }
    if (!u)
     return false;
@@ -162,7 +167,7 @@ var uTube = {
    let pu = false;
    if (!defU)
    {
-    pu = 'https://www.youtube-nocookie.com/embed/videoseries?list=' + result.list;
+    pu = d + 'videoseries?list=' + result.list;
     if (a)
      pu += '&autoplay=1';
    }
@@ -171,6 +176,8 @@ var uTube = {
     pu = defU + '#' + result.list;
     if (a)
      pu += '!';
+    if (!uTube.prefs.nocookie)
+     pu += '@';
    }
    if (!pu)
     return false;
@@ -188,11 +195,12 @@ var uTube = {
  loadPrefs: function()
  {
   chrome.storage.local.get(
-   {autoplay: false, hosted: true, hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'},
+   {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'},
    function(items)
    {
     uTube.prefs = {};
     uTube.prefs.autoplay = items.autoplay;
+    uTube.prefs.nocookie = items.nocookie;
     uTube.prefs.hosted = items.hosted;
     uTube.prefs.hostedURL = items.hostedURL;
    }
