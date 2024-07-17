@@ -88,15 +88,15 @@ const uTube = function()
     if (h.indexOf('$') === -1)
     {
      if (h.slice(0, 2) === 'PL' && h.length > 12)
-      this.location.replace('https://www.youtube.com/playlist?list=' + h + '&feature=emb_imp_woyt');
+      this.location.replace('https://www.youtube.com/playlist?list=' + h + '&embeds_referring_origin=');
      else
-      this.location.replace('https://www.youtube.com/watch?v=' + h + '&feature=emb_imp_woyt');
+      this.location.replace('https://www.youtube.com/watch?v=' + h + '&embeds_referring_origin=');
     }
     else
     {
      let v = h.slice(0, h.indexOf('$'));
      let p = h.slice(h.indexOf('$') + 1);
-     this.location.replace('https://www.youtube.com/watch?v=' + v + '&list=' + p + '&feature=emb_imp_woyt');
+     this.location.replace('https://www.youtube.com/watch?v=' + v + '&list=' + p + '&embeds_referring_origin=');
     }
    }
    else if (this.location.pathname.slice(0, 7) === '/embed/')
@@ -117,11 +117,11 @@ const uTube = function()
     if (result.hasOwnProperty('list'))
      p = result.list;
     if (v === 'videoseries')
-     this.location.replace('https://www.youtube.com/playlist?list=' + p + '&feature=emb_imp_woyt');
+     this.location.replace('https://www.youtube.com/playlist?list=' + p + '&embeds_referring_origin=');
     else if (p === null)
-     this.location.replace('https://www.youtube.com/watch?v=' + v + '&feature=emb_imp_woyt');
+     this.location.replace('https://www.youtube.com/watch?v=' + v + '&embeds_referring_origin=');
     else
-     this.location.replace('https://www.youtube.com/watch?v=' + v + '&list=' + p + '&feature=emb_imp_woyt');
+     this.location.replace('https://www.youtube.com/watch?v=' + v + '&list=' + p + '&embeds_referring_origin=');
    }
    return;
   }

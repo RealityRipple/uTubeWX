@@ -95,7 +95,7 @@ var uTube = {
    else if (result.hasOwnProperty('v'))
     uTube.tabs[tabID].skipV = result.v;
   }
-  if (result.hasOwnProperty('feature') && (result.feature === 'emb_imp_woyt' || result.feature === 'emb_logo'))
+  if (result.hasOwnProperty('embeds_referring_origin'))
   {
    if (result.hasOwnProperty('list'))
     uTube.tabs[tabID].skipPL = result.list;
