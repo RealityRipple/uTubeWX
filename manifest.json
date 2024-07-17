@@ -1,7 +1,7 @@
 {
  "name": "uTube",
  "description": "Show an embedded video on a simple blank page when visiting a YouTube video link.",
- "version": "1.3",
+ "version": "1.4",
  "manifest_version": 2,
  "background": {"scripts":["background.js"]},
  "content_scripts": [
