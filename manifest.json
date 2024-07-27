@@ -7,7 +7,7 @@
  "content_scripts": [
   {
    "matches": [
-     "https://realityripple.com/Software/XUL/uTube/play.html"
+     "https://utube.realityripple.com/"
    ],
    "js": ["content.js"]
   },

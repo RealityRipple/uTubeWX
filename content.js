@@ -139,14 +139,14 @@ const uTube = function()
    return false;
   if (uTube.prefs.hostedURL !== null)
    return uTube.prefs.hostedURL;
-  return 'https://realityripple.com/Software/XUL/uTube/play.html';
+  return 'https://utube.realityripple.com/';
  }
 
  function $loadPrefs()
  {
   uTube.tErr = false;
   chrome.storage.local.get(
-   {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'},
+   {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://utube.realityripple.com/'},
    function(items)
    {
     uTube.prefs = {};
@@ -166,7 +166,7 @@ const uTube = function()
    autoplay: false,
    nocookie: true,
    hosted: true,
-   hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'
+   hostedURL: 'https://utube.realityripple.com/'
   }
  }
 }();

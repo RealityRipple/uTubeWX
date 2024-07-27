@@ -190,12 +190,12 @@ var uTube = {
    return false;
   if (uTube.prefs.hostedURL !== null)
    return uTube.prefs.hostedURL;
-  return 'https://realityripple.com/Software/XUL/uTube/play.html';
+  return 'https://utube.realityripple.com/';
  },
  loadPrefs: function()
  {
   chrome.storage.local.get(
-   {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'},
+   {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://utube.realityripple.com/'},
    function(items)
    {
     uTube.prefs = {};

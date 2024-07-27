@@ -37,7 +37,7 @@ function cmdDefaults_Click()
  chkAutoplay.checked = false;
  chkNoCookie.checked = true;
  chkHosted.checked = true;
- txtHost.value = 'https://realityripple.com/Software/XUL/uTube/play.html';
+ txtHost.value = 'https://utube.realityripple.com/';
  txtHost.disabled = false;
 }
 
@@ -49,7 +49,7 @@ function init()
  const txtHost = document.getElementById('txtHost');
  chkHosted.addEventListener('change', chkHosted_Change);
  chrome.storage.local.get(
-  {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://realityripple.com/Software/XUL/uTube/play.html'},
+  {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://utube.realityripple.com/'},
   function(items)
   {
    chkAutoplay.checked = items.autoplay;
