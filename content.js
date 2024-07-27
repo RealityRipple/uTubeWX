@@ -3,40 +3,19 @@ const uTube = function()
  function $init()
  {
   uTube.loadPrefs();
-  let aURI = window.location;
-  let defU = _hostedURL();
-  let d = 'https://www.youtube-nocookie.com/embed/';
-  if (!uTube.prefs.nocookie)
-   d = 'https://www.youtube.com/embed/';
-  if (defU)
+  const aURI = window.location;
+  const defU = 'https://utube.realityripple.com/';
+  if (aURI.href.slice(0, defU.length) === defU)
   {
-   if (aURI.href.slice(0, defU.length) === defU)
-   {
-    if (uTube.tErr)
-     window.clearInterval(uTube.tErr);
-    uTube.tErr = window.setInterval(uTube.checkForError, 500);
-   }
-   else
-   {
-    if (uTube.tErr)
-     window.clearInterval(uTube.tErr);
-    uTube.tErr = false;
-   }
+   if (uTube.tErr)
+    window.clearInterval(uTube.tErr);
+   uTube.tErr = window.setInterval(uTube.checkForError, 500);
   }
   else
   {
-   if (aURI.href.slice(0, d.length) === d)
-   {
-    if (uTube.tErr)
-     window.clearInterval(uTube.tErr);
-    uTube.tErr = window.setInterval(uTube.checkForError, 500);
-   }
-   else
-   {
-    if (uTube.tErr)
-     window.clearInterval(uTube.tErr);
-    uTube.tErr = false;
-   }
+   if (uTube.tErr)
+    window.clearInterval(uTube.tErr);
+   uTube.tErr = false;
   }
  }
 
@@ -99,30 +78,6 @@ const uTube = function()
      this.location.replace('https://www.youtube.com/watch?v=' + v + '&list=' + p + '&embeds_referring_origin=');
     }
    }
-   else if (this.location.pathname.slice(0, 7) === '/embed/')
-   {
-    let v = this.location.pathname.slice(7);
-    let result = {};
-    if (this.location.search)
-    {
-     this.location.search.slice(1).split('&').forEach(
-      function(part)
-      {
-       let item = part.split('=');
-       result[item[0]] = decodeURIComponent(item[1]);
-      }
-     );
-    }
-    let p = null;
-    if (result.hasOwnProperty('list'))
-     p = result.list;
-    if (v === 'videoseries')
-     this.location.replace('https://www.youtube.com/playlist?list=' + p + '&embeds_referring_origin=');
-    else if (p === null)
-     this.location.replace('https://www.youtube.com/watch?v=' + v + '&embeds_referring_origin=');
-    else
-     this.location.replace('https://www.youtube.com/watch?v=' + v + '&list=' + p + '&embeds_referring_origin=');
-   }
    return;
   }
   if (mp.includes('playing-mode'))
@@ -133,27 +88,16 @@ const uTube = function()
   }
  }
 
- function _hostedURL()
- {
-  if (uTube.prefs.hosted === false)
-   return false;
-  if (uTube.prefs.hostedURL !== null)
-   return uTube.prefs.hostedURL;
-  return 'https://utube.realityripple.com/';
- }
-
  function $loadPrefs()
  {
   uTube.tErr = false;
   chrome.storage.local.get(
-   {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://utube.realityripple.com/'},
+   {autoplay: false, nocookie: true},
    function(items)
    {
     uTube.prefs = {};
     uTube.prefs.autoplay = items.autoplay;
     uTube.prefs.nocookie = items.nocookie;
-    uTube.prefs.hosted = items.hosted;
-    uTube.prefs.hostedURL = items.hostedURL;
    }
   );
  }
@@ -164,9 +108,7 @@ const uTube = function()
   loadPrefs: $loadPrefs,
   prefs: {
    autoplay: false,
-   nocookie: true,
-   hosted: true,
-   hostedURL: 'https://utube.realityripple.com/'
+   nocookie: true
   }
  }
 }();

@@ -1,22 +1,11 @@
-function chkHosted_Change()
-{
- const chkHosted = document.getElementById('chkHosted');
- const txtHost = document.getElementById('txtHost');
- txtHost.disabled = !chkHosted.checked;
-}
-
 function cmdOK_Click()
 {
  const chkAutoplay = document.getElementById('chkAutoplay');
  const chkNoCookie = document.getElementById('chkNoCookie');
- const chkHosted = document.getElementById('chkHosted');
- const txtHost = document.getElementById('txtHost');
  chrome.storage.local.set(
   {
    autoplay: chkAutoplay.checked,
-   nocookie: chkNoCookie.checked,
-   hosted: chkHosted.checked,
-   hostedURL: txtHost.value
+   nocookie: chkNoCookie.checked
   }
  );
  chrome.runtime.sendMessage('cfg');
@@ -32,31 +21,20 @@ function cmdDefaults_Click()
 {
  const chkAutoplay = document.getElementById('chkAutoplay');
  const chkNoCookie = document.getElementById('chkNoCookie');
- const chkHosted = document.getElementById('chkHosted');
- const txtHost = document.getElementById('txtHost');
  chkAutoplay.checked = false;
  chkNoCookie.checked = true;
- chkHosted.checked = true;
- txtHost.value = 'https://utube.realityripple.com/';
- txtHost.disabled = false;
 }
 
 function init()
 {
  const chkAutoplay = document.getElementById('chkAutoplay');
  const chkNoCookie = document.getElementById('chkNoCookie');
- const chkHosted = document.getElementById('chkHosted');
- const txtHost = document.getElementById('txtHost');
- chkHosted.addEventListener('change', chkHosted_Change);
  chrome.storage.local.get(
-  {autoplay: false, nocookie: true, hosted: true, hostedURL: 'https://utube.realityripple.com/'},
+  {autoplay: false, nocookie: true},
   function(items)
   {
    chkAutoplay.checked = items.autoplay;
    chkNoCookie.checked = items.nocookie;
-   chkHosted.checked = items.hosted;
-   txtHost.value = items.hostedURL;
-   txtHost.disabled = !chkHosted.checked;
   }
  );
  document.getElementById('cmdDefaults').addEventListener('click', cmdDefaults_Click);
