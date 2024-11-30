@@ -101,6 +101,9 @@ var uTube = {
    }
    delete uTube.tabs[tabID].skipV;
   }
+  let time = false;
+  if (result.hasOwnProperty('t'))
+   time = result.t;
   if (aURI.pathname === '/watch')
   {
    if (!result.hasOwnProperty('v'))
@@ -108,6 +111,8 @@ var uTube = {
    let u = defU + '#' + result.v;
    if (result.hasOwnProperty('list'))
     u += '$' + result.list;
+   if (time)
+    u += '~' + time;
    if (uTube.prefs.autoplay)
     u += '!';
    if (!uTube.prefs.nocookie)
@@ -121,6 +126,8 @@ var uTube = {
    if (!result.hasOwnProperty('list'))
     return false;
    let pu = defU + '#' + result.list;
+   if (time)
+    pu += '~' + time;
    if (uTube.prefs.autoplay)
     pu += '!';
    if (!uTube.prefs.nocookie)
